@@ -6,4 +6,4 @@ one:
 
 two:
   email: test2@gmail.com
-  password_digest: <%= Bcrypt::Password.create("password") %>
+  password_digest: <%= BCrypt::Password.create("password") %>

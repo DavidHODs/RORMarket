@@ -1,7 +1,7 @@
 class Api::V1::ProductsController < ApplicationController
     before_action :check_login, only: %i[create]
-    before_action :set_product, only: %i[show update]
-    before_action :check_owner, only: %i[update]
+    before_action :set_product, only: %i[show update destroy]
+    before_action :check_owner, only: %i[update destroy]
 
     def create
         product = current_user.products.build(product_params)
@@ -27,6 +27,11 @@ class Api::V1::ProductsController < ApplicationController
             render json: @product.errors, status: :unprocessable_entity
         end 
     end
+
+    def destroy 
+        @product.destroy 
+        head 204
+    end 
 
     private 
     def product_params 
